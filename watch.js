@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var Rsync = require('rsync');
+var async = require('async');
 var path = require('path');
 var getopt = require('node-getopt');
 
@@ -19,38 +20,52 @@ if (opt.argv.length < 2) {
 
 } else {
 
-    var destination = opt.argv[1];
-    var source = opt.argv[0];
+    var destination = opt.argv[opt.argv.length - 1];
+    var source = opt.argv.slice(0, opt.argv.length - 1);
     var identity = opt.options.identity || '~/.ssh/id_rsa';
 
-    fs.exists(source, function(exists) {
-        if (exists) {
-            // not a very safe/useful check
-            fs.watch(source, (function() {
+    async.filter(source, fs.exists, function(results) {
 
-                function sync() {
-                    var rsync = new Rsync()
-                        .flags('avz')
-                        .set('e', "ssh -i " + identity)
-                        .source(source)
-                        .destination(destination);
+        var sync = (function() {
 
-                    rsync.execute(function(error, code, cmd) {
-                        console.log(!code ? 'SUCCESS:' : 'FAIL:', cmd);
-                        if (error) handleError(error);
-                    }, function() {}, function (stderr) {
-                        process.stderr.write(stderr);
-                    });
+            process.stdin.on('data', function(data) {
+                if (data.toString().toLowerCase().trim() == 'sync') {
+                    sync();
                 }
+            });
 
-                return sync() || sync;
+            function sync(files) {
+                var rsync = new Rsync()
+                    .flags('avz')
+                    .set('e', "ssh -i " + identity)
+                    .source(files.join(' '))
+                    .destination(destination);
 
-            }()));
 
-        } else {
-            handleError(Error("File does not exist."));
+                rsync.execute(function(error, code, cmd) {
+                    console.log((!code ? 'SUCCESS:' : 'FAILED:'), files.join(' '));
+                    if (error) handleError(error);
+
+                }, function() {}, function (stderr) {
+                    process.stderr.write(stderr);
+                });
+
+            }
+
+            return sync(results) || sync;
+
+        }())
+
+        if (results.length !== 0) {
+            results.forEach(function(file, index) {
+                fs.watch(file, function(event, filename) {
+                    sync([file]);
+                });
+            });
         }
+
     });
+
 }
 
 // error handler
