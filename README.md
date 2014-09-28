@@ -74,7 +74,7 @@ To test to see if the key works, simply run ```watch.js source destination```.
 Special thanks:
 ===============
 
-This script builds on the following two node projects:
+This script builds on the following three node projects:
 
 > [**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run <br>
 > [**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js. <br>
