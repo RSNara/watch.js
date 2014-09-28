@@ -17,10 +17,9 @@ node watch.js source destination
 SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
 SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
 SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
-...
 ```
 
-------
+<br>
 
 ## Windows Requirements:
 
@@ -37,7 +36,7 @@ Once you have all three things installed, clone the repository and install the n
 > cd path/to/repo && npm install
 ```
 
-> **NOTE:** You can also add the path to this repository into your PATH environment variable to make the script easier to execute. 
+> **NOTE:** You can also add ```path/to/repo``` into your PATH environment variable to make the script easier to execute. 
 
 ### Server Configuration:
 
@@ -66,7 +65,7 @@ To test to see if the key works, simply run ```watch.js source destination```.
 
 You can also generate a private key using puttygen and try to log in via the private key using putty. If the keys don't work, feel free to post an issue (after doing some digging around on google, of course).
 
-------
+<br>
 
 ##Special thanks:
 This script builds on the following two node projects:
