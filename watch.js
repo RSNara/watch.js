@@ -33,14 +33,18 @@ if (opt.argv.length < 2) {
 
             process.stdin.on('data', function(data) {
                 if (data.toString().toLowerCase().trim() == 'sync') {
-                    sync();
+                    sync(results);
                 }
             });
 
             function sync(files) {
+
+                var data = [];
+
                 var rsync = new Rsync()
                     .flags('avz')
                     .set('e', "ssh -i " + identity)
+                    .set('stats')
                     .source(files.join(' '))
                     .destination(destination);
 
@@ -48,10 +52,12 @@ if (opt.argv.length < 2) {
 
                 rsync.execute(function(error, code, cmd) {
                     console.log((!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s',
-                        opt.options.delete ? '--delete' : '' , files.join(' '));
+                        opt.options.delete ? '--delete' : '' , data.slice(1, data.length - 2).join(', '));
                     if (error) handleError(error);
 
-                }, function() {}, function (stderr) {
+                }, function(stdout) {
+                    data.push(stdout.toString().trim());
+                }, function (stderr) {
                     process.stderr.write(stderr);
                 });
 
