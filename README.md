@@ -19,8 +19,9 @@ SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.uni
 SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
 ```
 
-
-## Installation
+<br>
+Installation
+============
 
 Grab [Node.JS](http://nodejs.org) and install [Cygwin](https://www.cygwin.com/) with **rsync** and **ssh-keygen**.
 
@@ -32,6 +33,8 @@ Once you have all three things installed, clone the repository and install the n
 ```
 
 > **NOTE:** You can also add ```path/to/repo``` into your PATH environment variable to make the script easier to execute. 
+
+
 
 ### Server Configuration:
 
@@ -60,8 +63,10 @@ To test to see if the key works, simply run ```watch.js source destination```.
 
 You can also generate a private key using puttygen and try to log in via the private key using putty. If the keys don't work, feel free to post an issue (after doing some digging around on google, of course).
 
+<br>
+Special thanks:
+===============
 
-##Special thanks:
 This script builds on the following two node projects:
 
 > [**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run <br>
