@@ -39,7 +39,8 @@ Once you have all three things installed, clone the repository and install the n
 
 
 <br>
-### Server Configuration:
+Server Configuration:
+====================
 
 > **NOTE:** To use this script, your server must allow password-less login via **SSH Keys**. If that's already set up, feel free skip this section.
 
@@ -66,7 +67,7 @@ Now, append the contents of newly generated ```id_rsa.pub``` to the file ```~/.s
 
 To test to see if the key works, simply run ```watch.js source destination```. 
 
-You can also generate a private key using PuTTYgen and try to log in via PuTTY (using the private key). If the key doesn't work, feel free to post an issue (after doing some digging around on google, that is).
+> **NOTE:** You can also generate a private key using **PuTTYgen** and try to log in via **PuTTY** (using the private key). If the key doesn't work, feel free to post an issue (after doing some digging around on Google, that is).
 
 <br>
 Special thanks:
