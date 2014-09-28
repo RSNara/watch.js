@@ -8,6 +8,7 @@ var getopt = require('node-getopt');
 
 var opt = getopt.create([
         ['i', 'identity=ARG', 'Specify id_rsa file location (default is `~/.ssh/id_rsa`).'],
+        ['d', 'delete', 'Delete extraneous files from remote on each rsync.'],
         ['h', 'help', 'Display this help.'],
         ['v', 'version', 'Display version number.']
     ])
@@ -43,9 +44,11 @@ if (opt.argv.length < 2) {
                     .source(files.join(' '))
                     .destination(destination);
 
+                opt.options.delete ? rsync.set('delete') : null;
 
                 rsync.execute(function(error, code, cmd) {
-                    console.log((!code ? 'SUCCESS:' : 'FAILED:'), files.join(' '));
+                    console.log((!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s',
+                        opt.options.delete ? '--delete' : '' , files.join(' '));
                     if (error) handleError(error);
 
                 }, function() {}, function (stderr) {
