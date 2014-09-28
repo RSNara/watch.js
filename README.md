@@ -1,7 +1,7 @@
 watch.js
 ========
 
-This is a node.js script that watches your working directory and **rsyncs** the changes to a remote server on each save.
+This is a node.js script that watches local files and keeps them updated on a remote server using **rsync**. It requires [**node.js**](http://www.nodejs.org) and a server that allows password-less login via **SSH keys**.
 
 ```bash
 node watch.js source destination
@@ -23,7 +23,7 @@ SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.uni
 Installation
 ============
 
-Grab [Node.JS](http://nodejs.org) and install [Cygwin](https://www.cygwin.com/) with **rsync** and **ssh-keygen**.
+Grab [**node.js**](http://nodejs.org) and install [**Cygwin**](https://www.cygwin.com/) with **rsync** and **ssh-keygen**.
 
 
 Once you have all three things installed, clone the repository and install the npm modules:
@@ -38,15 +38,17 @@ Once you have all three things installed, clone the repository and install the n
 
 ### Server Configuration:
 
-This step is fairly straightforward. It'll generate two files: ```id_rsa``` and ```id_rsa.pub```. This script requires id_rsa to not be password protected. **Be careful**.
+> **NOTE:** To use this script, your server must allow password-less login via **SSH Keys**. If that's already set up, feel free skip this section.
+
+We'll generate two files: ```id_rsa``` and ```id_rsa.pub``` using **ssh-keygen**. This script requires the generated keys to not be password protected. **Be careful**.
 
 ```bash
-# generating SSH keys
+# follow the instructions
 > ssh-keygen
 ```
 
 Now, append the contents of newly generated ```id_rsa.pub``` to the file ```~/.ssh/authorized_keys``` on your server.
-```bash
+```BASH
 # copy over the file (fill in the details here)
 > scp ~/.ssh/id_rsa.pub username@server:/temporary/location/id_rsa.pub
 
@@ -61,7 +63,7 @@ Now, append the contents of newly generated ```id_rsa.pub``` to the file ```~/.s
 
 To test to see if the key works, simply run ```watch.js source destination```. 
 
-You can also generate a private key using PuTTYgen and try to log in via PuTTY using that. If the key doesn't work, feel free to post an issue (after doing some digging around on google, that is).
+You can also generate a private key using PuTTYgen and try to log in via PuTTY (using the private key). If the key doesn't work, feel free to post an issue (after doing some digging around on google, that is).
 
 <br>
 Special thanks:
