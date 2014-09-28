@@ -20,7 +20,9 @@ SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.uni
 ...
 ```
 
-### Windows Requirements:
+------
+
+## Windows Requirements:
 
 The first requirement can be easily met by visiting [Node.JS](http://nodejs.org). For the second and third, it's easiest to install [Cygwin](https://www.cygwin.com/).
 
@@ -28,13 +30,21 @@ The first requirement can be easily met by visiting [Node.JS](http://nodejs.org)
 	2. rsync
 	3. ssh-keygen
 
-### Server Preparation:
-
-This step is fairly straightforward. It'll generate two files: ```id_rsa``` and ```id_rsa.pub```.
-> **NOTE:** This script requires that id_rsa have no password.
-
-Generating SSH keys; follow the instructions:
+### Installation
+Once you have all three things installed, clone the repository and install the npm modules:
 ```bash
+> git clone https://github.com/ramanpreetnara/watch.js.git path/to/repo
+> cd path/to/repo && npm install
+```
+
+> **NOTE:** You can also add the path to this repository into your PATH environment variable to make the script easier to execute. 
+
+### Server Configuration:
+
+This step is fairly straightforward. It'll generate two files: ```id_rsa``` and ```id_rsa.pub```. This script requires id_rsa to not be password protected. **Be careful**.
+
+```bash
+# generating SSH keys
 > ssh-keygen
 ```
 
@@ -52,13 +62,17 @@ Now, append the contents of newly generated ```id_rsa.pub``` to the file ```~/.s
 
 ```
 
-To test to see if the key works, simply run watch.js <src> <dest>.
+To test to see if the key works, simply run ```watch.js source destination```. 
+
+You can also generate a private key using puttygen and try to log in via the private key using putty. If the keys don't work, feel free to post an issue (after doing some digging around on google, of course).
 
 ------
 
 ##Special thanks:
 This script builds on the following two node projects:
 
->[**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run
+> [**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run <br>
+> [**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js.
 
->[**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js.
+##Notices:
+This script has yet to undergo rigorous tests. 
