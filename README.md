@@ -1,7 +1,7 @@
 watch.js
 ========
 
-This is a node.js script that watches local files and keeps them updated on a remote server using **rsync**. It requires [**node.js**](http://www.nodejs.org) and a server that allows password-less login via **SSH keys**.
+This is a node.js script that watches local files and keeps them updated on a remote server. It requires [**node.js**](http://www.nodejs.org), **rsync**, and a server that allows password-less login via **SSH keys**.
 
 ```bash
 node watch.js source destination
