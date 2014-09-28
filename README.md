@@ -6,12 +6,9 @@ This is a node.js script that watches your working directory and **rsyncs** the 
 ```bash
 node watch.js source destination
 ```
-
->	-i,	--identity=ARG		Specify id_rsa file location (default is `~/.ssh/id_rsa`).
->
->	-h,	--help			Display this help.
->
->	-v,	--version			Display version number.
+>        -i,    --identity=ARG        Specify id_rsa file location (default is `~/.ssh/id_rsa`).
+>        -h,    --help                Display this help.
+>        -v,    --version             Display version number.
 
 
 ### Example Output:
@@ -63,4 +60,5 @@ To test to see if the key works, simply run watch.js <src> <dest>.
 This script builds on the following two node projects:
 
 >[**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run
+
 >[**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js.
