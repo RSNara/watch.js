@@ -61,7 +61,7 @@ Now, append the contents of newly generated ```id_rsa.pub``` to the file ```~/.s
 
 To test to see if the key works, simply run ```watch.js source destination```. 
 
-You can also generate a private key using puttygen and try to log in via the private key using putty. If the keys don't work, feel free to post an issue (after doing some digging around on google, of course).
+You can also generate a private key using PuTTYgen and try to log in via PuTTY using that. If the key doesn't work, feel free to post an issue (after doing some digging around on google, that is).
 
 <br>
 Special thanks:
