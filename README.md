@@ -12,6 +12,9 @@ node watch.js source destination
 
 
 ### Example Output:
+
+On every file change, it'll perform an **rsync**:
+
 ```bash
 > watch.js ../a3/ rsnara@linux.student.university.ca:/home/rsnara/cs240/a3
 SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
@@ -74,5 +77,6 @@ This script builds on the following two node projects:
 > [**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run <br>
 > [**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js.
 
-##Notices:
-This script has yet to undergo rigorous tests. 
+Notices:
+========
+This script relies on [**fs.watch**](http://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener), which is currently unstable.
