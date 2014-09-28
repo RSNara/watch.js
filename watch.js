@@ -26,6 +26,8 @@ if (opt.argv.length < 2) {
 
     async.filter(source, fs.exists, function(results) {
 
+        // meh, we don't have 100% gurantee that by the time we bind fs.watch
+        // the files in results will all be present
         var sync = (function() {
 
             process.stdin.on('data', function(data) {
