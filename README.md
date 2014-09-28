@@ -7,6 +7,7 @@ This is a node.js script that watches local files and keeps them updated on a re
 node watch.js source destination
 ```
 >        -i,    --identity=ARG        Specify id_rsa file location (default is `~/.ssh/id_rsa`).
+>        -d,    --delete              Delete extraneous files on the remote (dangerous).
 >        -h,    --help                Display this help.
 >        -v,    --version             Display version number.
 
@@ -76,7 +77,8 @@ Special thanks:
 This script builds on the following two node projects:
 
 > [**getopt**](https://github.com/jiangmiao/node-getopt) - a command line parser that makes the script easier to run <br>
-> [**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js.
+> [**node-rsync**](https://github.com/mattijs/node-rsync) - building and executing rsync commands with Node.js. <br>
+> [**async**](https://github.com/caolan/async) - async flow-control module for Node.js.
 
 Notices:
 ========
