@@ -38,7 +38,7 @@ Once you have all three things installed, clone the repository and install the n
 > **NOTE:** You can also add ```path/to/repo``` into your PATH environment variable to make the script easier to execute. 
 
 
-
+<br>
 ### Server Configuration:
 
 > **NOTE:** To use this script, your server must allow password-less login via **SSH Keys**. If that's already set up, feel free skip this section.
