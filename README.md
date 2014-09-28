@@ -19,7 +19,6 @@ SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.uni
 SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
 ```
 
-<br>
 
 ## Installation
 
@@ -61,7 +60,6 @@ To test to see if the key works, simply run ```watch.js source destination```.
 
 You can also generate a private key using puttygen and try to log in via the private key using putty. If the keys don't work, feel free to post an issue (after doing some digging around on google, of course).
 
-<br>
 
 ##Special thanks:
 This script builds on the following two node projects:
