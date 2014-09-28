@@ -6,8 +6,11 @@ This is a node.js script that watches your working directory and **rsyncs** the 
 ```bash
 node watch.js source destination
 ```
+
 >	-i,	--identity=ARG		Specify id_rsa file location (default is `~/.ssh/id_rsa`).
+>
 >	-h,	--help			Display this help.
+>
 >	-v,	--version			Display version number.
 
 
