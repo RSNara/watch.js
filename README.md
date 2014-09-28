@@ -21,15 +21,11 @@ SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.uni
 
 <br>
 
-## Windows Requirements:
+## Installation
 
-The first requirement can be easily met by visiting [Node.JS](http://nodejs.org). For the second and third, it's easiest to install [Cygwin](https://www.cygwin.com/).
+Grab [Node.JS](http://nodejs.org) and install [Cygwin](https://www.cygwin.com/) with **rsync** and **ssh-keygen**.
 
-	1. node.js
-	2. rsync
-	3. ssh-keygen
 
-### Installation
 Once you have all three things installed, clone the repository and install the npm modules:
 ```bash
 > git clone https://github.com/ramanpreetnara/watch.js.git path/to/repo
