@@ -10,7 +10,6 @@ node watch.js source destination
 >        -t,    --time=ARG            Specify the minimum time period between successive rsyncs in ms.
 >        -d,    --delete              Delete extraneous files on the remote (dangerous).
 >        -h,    --help                Display this help.
->        -v,    --version             Display version number.
 
 
 ### Example Output:
