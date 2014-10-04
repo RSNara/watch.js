@@ -35,6 +35,7 @@ if (opt.argv.length < 2) {
         var sync = (function() {
 
             var doRsync = true;
+            var rsyncCount = 0;
 
             process.stdin.on('data', function(data) {
                 if (data.toString().toLowerCase().trim() == 'sync') {
@@ -56,6 +57,7 @@ if (opt.argv.length < 2) {
                 if (doRsync) {
 
                     var data = [];
+                    rsyncCount++;
 
                     var rsync = new Rsync()
                         .flags('avz')
@@ -69,8 +71,9 @@ if (opt.argv.length < 2) {
                     rsync.execute(function(error, code, cmd) {
                         var fileList = data.slice(1, data.length - 14).join(', ');
                         console.log(
-                            (!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s',
-                            opt.options.delete ? '--delete' : '',
+                            'rsync #%d [%s]: %s',
+                            rsyncCount,
+                            !code ? 'SUCCESS' : 'FAILURE',
                             fileList.length ? fileList : 'NOTHING'
                         );
                         error ? handleError(error) : null;
