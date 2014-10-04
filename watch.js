@@ -27,9 +27,12 @@ if (opt.argv.length < 2) {
 
     async.filter(source, fs.exists, function(results) {
 
-        // meh, we don't have 100% gurantee that by the time we bind fs.watch
-        // the files in results will all be present
+        // this check does 100% gurantee that the files exist by the time we start binding to them
+        // could be a source of error
+
         var sync = (function() {
+
+            var doRsync = true;
 
             process.stdin.on('data', function(data) {
                 if (data.toString().toLowerCase().trim() == 'sync') {
@@ -37,29 +40,43 @@ if (opt.argv.length < 2) {
                 }
             });
 
+            // toggle doRsync after a unit of time
+            function flipRsync(ms) {
+                doRsync = false;
+                setTimeout(function(){
+                    doRsync = true;
+                }, ms);
+            }
+
+            // perform rsync
             function sync(files) {
 
-                var data = [];
+                if (doRsync) {
 
-                var rsync = new Rsync()
-                    .flags('avz')
-                    .set('e', "ssh -i " + identity)
-                    .set('stats')
-                    .source(files.join(' '))
-                    .destination(destination);
+                    var data = [];
 
-                opt.options.delete ? rsync.set('delete') : null;
+                    var rsync = new Rsync()
+                        .flags('avz')
+                        .set('e', "ssh -i " + identity)
+                        .set('stats')
+                        .source(files.join(' '))
+                        .destination(destination);
 
-                rsync.execute(function(error, code, cmd) {
-                    console.log((!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s',
-                        opt.options.delete ? '--delete' : '' , data.slice(1, data.length - 2).join(', '));
-                    if (error) handleError(error);
+                    opt.options.delete ? rsync.set('delete') : null;
 
-                }, function(stdout) {
-                    data.push(stdout.toString().trim());
-                }, function (stderr) {
-                    process.stderr.write(stderr);
-                });
+                    rsync.execute(function(error, code, cmd) {
+                        var fileList = data.slice(1, data.length - 14).join(', ');
+                        console.log((!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s', opt.options.delete ? '--delete' : '', fileList.length ? fileList : 'NOTHING');
+                        if (error) handleError(error);
+                    }, function(stdout) {
+                        data = data.concat(stdout.toString().trim().split('\n'));
+                    }, function (stderr) {
+                        console.error(stderr);
+                    });
+
+                    flipRsync(250);
+
+                }
 
             }
 
