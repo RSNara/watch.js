@@ -6,11 +6,10 @@ This is a node.js script that watches local files and keeps them updated on a re
 ```bash
 node watch.js source destination
 ```
->        -i,    --identity=ARG        Specify id_rsa file location (default is `~/.ssh/id_rsa`).
->        -t,    --time=ARG            Specify the minimum time period between successive rsyncs in ms.
+>        -i,    --identity=ARG        Specify id_rsa file location (default: `~/.ssh/id_rsa`).
+>        -t,    --time=ARG            The minimum time period between successive rsyncs (default: 250 ms).
 >        -d,    --delete              Delete extraneous files on the remote (dangerous).
 >        -h,    --help                Display this help.
->        -v,    --version             Display version number.
 
 
 ### Example Output:
