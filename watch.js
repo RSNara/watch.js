@@ -71,7 +71,8 @@ if (opt.argv.length < 2) {
                     rsync.execute(function(error, code, cmd) {
                         var fileList = data.slice(1, data.length - 14).join(', ');
                         console.log(
-                            'rsync #%d [%s]: %s',
+                            'rsync%s #%d [%s]: %s',
+                            opt.options.delete ? " -d" : "",
                             rsyncCount,
                             !code ? 'SUCCESS' : 'FAILURE',
                             fileList.length ? fileList : 'NOTHING'
