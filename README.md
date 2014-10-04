@@ -19,9 +19,9 @@ On every file change, it'll perform an **rsync**:
 
 ```bash
 > watch.js ../a3/ rsnara@linux.student.university.ca:/home/rsnara/cs240/a3
-SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
-SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
-SUCCESS: rsync -avz -e "ssh -i ~/.ssh/id_rsa" ../a3/ rsnara@linux.student.cs.university.ca:/home/rsnara/cs240/a3
+SUCCESS rsync []: ./, asm.cc, kind.cc, kind.h, lexer.cc, lexer.h, traverse.cc, old/, old/asm.cc
+SUCCESS rsync []: asm.cc, kind.cc
+SUCCESS rsync []: lexer.cc, traverse.cc, old/
 ```
 
 <br>
