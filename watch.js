@@ -8,6 +8,7 @@ var getopt = require('node-getopt');
 
 var opt = getopt.create([
         ['i', 'identity=ARG', 'Specify id_rsa file location (default is `~/.ssh/id_rsa`).'],
+        ['t', 'time=ARG', 'Specify the minimum time period between successive rsyncs in ms.'],
         ['d', 'delete', 'Delete extraneous files from remote on each rsync.'],
         ['h', 'help', 'Display this help.'],
         ['v', 'version', 'Display version number.']
@@ -24,6 +25,7 @@ if (opt.argv.length < 2) {
     var destination = opt.argv[opt.argv.length - 1];
     var source = opt.argv.slice(0, opt.argv.length - 1);
     var identity = opt.options.identity || '~/.ssh/id_rsa';
+    var time = opt.options.time || 250;
 
     async.filter(source, fs.exists, function(results) {
 
@@ -66,15 +68,20 @@ if (opt.argv.length < 2) {
 
                     rsync.execute(function(error, code, cmd) {
                         var fileList = data.slice(1, data.length - 14).join(', ');
-                        console.log((!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s', opt.options.delete ? '--delete' : '', fileList.length ? fileList : 'NOTHING');
-                        if (error) handleError(error);
+                        console.log(
+                            (!code ? 'SUCCESS' : 'FAILED ') + ' rsync [%s]: %s',
+                            opt.options.delete ? '--delete' : '',
+                            fileList.length ? fileList : 'NOTHING'
+                        );
+                        error ? handleError(error) : null;
                     }, function(stdout) {
                         data = data.concat(stdout.toString().trim().split('\n'));
                     }, function (stderr) {
                         console.error(stderr);
                     });
 
-                    flipRsync(250);
+                    // doRsync = false; toggle after time seconds
+                    flipRsync(time);
 
                 }
 

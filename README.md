@@ -7,6 +7,7 @@ This is a node.js script that watches local files and keeps them updated on a re
 node watch.js source destination
 ```
 >        -i,    --identity=ARG        Specify id_rsa file location (default is `~/.ssh/id_rsa`).
+>        -t,    --time=ARG            Specify the minimum time period between successive rsyncs in ms.
 >        -d,    --delete              Delete extraneous files on the remote (dangerous).
 >        -h,    --help                Display this help.
 >        -v,    --version             Display version number.
@@ -36,7 +37,7 @@ Once you have all three things installed, clone the repository and install the n
 > cd path/to/repo && npm install
 ```
 
-> **NOTE:** You can also add ```path/to/repo``` into your PATH environment variable to make the script easier to execute. 
+> **NOTE:** You can also add ```path/to/repo``` into your PATH environment variable to make the script easier to execute.
 
 
 <br>
@@ -66,7 +67,7 @@ Now, append the contents of newly generated ```id_rsa.pub``` to the file ```~/.s
 
 ```
 
-To test to see if the key works, simply run ```watch.js source destination```. 
+To test to see if the key works, simply run ```watch.js source destination```.
 
 > **NOTE:** You can also generate a private key using **PuTTYgen** and try to log in via **PuTTY** (using the private key). If the key doesn't work, feel free to post an issue (after doing some digging around on Google, that is).
 
