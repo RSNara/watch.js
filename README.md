@@ -4,7 +4,7 @@ watch.js
 This is a node.js script that watches local files and keeps them updated on a remote server. It requires [**node.js**](http://www.nodejs.org), **rsync**, and a server that allows password-less login via **SSH keys**.
 
 ```bash
-node watch.js source destination
+watch.js source destination
 ```
 >        -i,    --identity=ARG        Specify id_rsa file location (default: `~/.ssh/id_rsa`).
 >        -t,    --time=ARG            The minimum time period between successive rsyncs (default: 250 ms).
