@@ -45,7 +45,7 @@ Server Configuration:
 
 > **NOTE:** To use this script, your server must allow password-less login via **SSH Keys**. If that's already set up, feel free skip this section.
 
-We'll generate two files: ```id_rsa``` and ```id_rsa.pub``` using **ssh-keygen**. This script requires the generated keys to not be password protected. **Be careful**.
+We'll generate two files: ```id_rsa``` and ```id_rsa.pub``` using **ssh-keygen**. 
 
 ```bash
 # follow the instructions
